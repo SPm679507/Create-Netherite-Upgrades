@@ -24,6 +24,7 @@ public final class BoosterConfigs {
     public static final class Server {
         public final ForgeConfigSpec.DoubleValue powerfulPumpStressImpact;
         public final ForgeConfigSpec.DoubleValue powerfulPumpPressureMultiplier;
+        public final ForgeConfigSpec.IntValue netheriteFluidTankCapacityMultiplier;
 
         private Server(ForgeConfigSpec.Builder builder) {
             powerfulPumpStressImpact = builder
@@ -44,6 +45,15 @@ public final class BoosterConfigs {
                     "Restart the world or server after changing this value to guarantee pipe networks are recalculated."
                 )
                 .defineInRange("powerfulPumpPressureMultiplier", 8.0D, Double.MIN_VALUE, Double.MAX_VALUE);
+
+            netheriteFluidTankCapacityMultiplier = builder
+                .comment(
+                    "Capacity multiplier for createnetherite:netherite_fluid_tank compared to one regular Create Fluid Tank block.",
+                    "Final capacity is Create's configured single-block Fluid Tank capacity multiplied by this value and by the multiblock block count.",
+                    "Must be at least 1.",
+                    "Restart the world or server after changing this value to guarantee existing tank capacities are recalculated."
+                )
+                .defineInRange("netheriteFluidTankCapacityMultiplier", 16, 1, 1024);
         }
     }
 }

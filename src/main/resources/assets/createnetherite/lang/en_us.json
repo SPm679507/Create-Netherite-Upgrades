@@ -3,6 +3,6 @@
   "block.createnetherite.powerful_mechanical_pump": "Powerful Mechanical Pump",
   "itemGroup.createnetherite.createnetherite": "Create Netherite",
   "item.createnetherite.netherite_sheet": "Netherite Sheet",
-  "tooltip.createnetherite.netherite_fluid_tank": "Stores 16x as much fluid as a regular Fluid Tank.",
+  "tooltip.createnetherite.netherite_fluid_tank": "Stores %sx as much fluid as a regular Fluid Tank.",
   "tooltip.createnetherite.powerful_mechanical_pump": "High-capacity fluid pump"
 }

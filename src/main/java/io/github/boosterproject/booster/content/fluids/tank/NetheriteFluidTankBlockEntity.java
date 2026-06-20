@@ -2,6 +2,7 @@ package io.github.boosterproject.booster.content.fluids.tank;
 
 import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
 import com.simibubi.create.foundation.fluid.SmartFluidTank;
+import io.github.boosterproject.booster.config.BoosterConfigs;
 import io.github.boosterproject.booster.registry.BoosterBlockEntityTypes;
 import net.createmod.catnip.animation.LerpedFloat;
 import net.minecraft.core.BlockPos;
@@ -12,7 +13,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 
 public class NetheriteFluidTankBlockEntity extends FluidTankBlockEntity {
-    public static final int CAPACITY_MULTIPLIER = 16;
+    public static final int DEFAULT_CAPACITY_MULTIPLIER = 16;
 
     public NetheriteFluidTankBlockEntity(BlockPos pos, BlockState state) {
         this(BoosterBlockEntityTypes.NETHERITE_FLUID_TANK.get(), pos, state);
@@ -23,7 +24,7 @@ public class NetheriteFluidTankBlockEntity extends FluidTankBlockEntity {
     }
 
     public static int getNetheriteCapacityMultiplierValue() {
-        return safeCapacity(FluidTankBlockEntity.getCapacityMultiplier(), CAPACITY_MULTIPLIER);
+        return safeCapacity(FluidTankBlockEntity.getCapacityMultiplier(), getConfiguredCapacityMultiplier());
     }
 
     public int getNetheriteCapacityMultiplier() {
@@ -73,6 +74,10 @@ public class NetheriteFluidTankBlockEntity extends FluidTankBlockEntity {
 
     private int getCapacityForBlocks(int blocks) {
         return safeCapacity(getNetheriteCapacityMultiplier(), Math.max(1, blocks));
+    }
+
+    public static int getConfiguredCapacityMultiplier() {
+        return Math.max(1, BoosterConfigs.SERVER.netheriteFluidTankCapacityMultiplier.get());
     }
 
     private static int safeCapacity(int base, int multiplier) {

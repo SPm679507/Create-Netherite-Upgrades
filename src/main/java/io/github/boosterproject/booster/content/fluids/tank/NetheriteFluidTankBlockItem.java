@@ -22,7 +22,10 @@ public class NetheriteFluidTankBlockItem extends BlockItem {
 
     @Override
     public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable("tooltip.createnetherite.netherite_fluid_tank"));
+        tooltip.add(Component.translatable(
+            "tooltip.createnetherite.netherite_fluid_tank",
+            NetheriteFluidTankBlockEntity.getConfiguredCapacityMultiplier()
+        ));
         super.appendHoverText(stack, level, tooltip, flag);
     }
 
