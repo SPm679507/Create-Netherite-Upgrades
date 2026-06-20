@@ -5,6 +5,9 @@ import com.simibubi.create.content.fluids.PipeAttachmentModel;
 import dev.engine_room.flywheel.lib.visualization.SimpleBlockEntityVisualizer;
 import io.github.boosterproject.booster.Booster;
 import io.github.boosterproject.booster.registry.BoosterBlockEntityTypes;
+import io.github.boosterproject.booster.registry.BoosterBlocks;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -35,9 +38,12 @@ public final class BoosterClient {
     }
 
     private static void clientSetup(FMLClientSetupEvent event) {
-        event.enqueueWork(() -> SimpleBlockEntityVisualizer
-            .builder(BoosterBlockEntityTypes.POWERFUL_MECHANICAL_PUMP.get())
-            .factory(PowerfulMechanicalPumpVisual::new)
-            .apply());
+        event.enqueueWork(() -> {
+            ItemBlockRenderTypes.setRenderLayer(BoosterBlocks.NETHERITE_FLUID_TANK.get(), RenderType.cutoutMipped());
+            SimpleBlockEntityVisualizer
+                .builder(BoosterBlockEntityTypes.POWERFUL_MECHANICAL_PUMP.get())
+                .factory(PowerfulMechanicalPumpVisual::new)
+                .apply();
+        });
     }
 }
