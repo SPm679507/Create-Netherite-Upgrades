@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.github.boosterproject.booster.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "booster.refmap.json",
+  "mixins": [
+    "FluidPropagatorMixin",
+    "PumpBlockEntityMixin",
+    "PumpFluidTransferBehaviourMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

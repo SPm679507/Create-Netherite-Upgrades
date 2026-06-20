@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " C ",
+    "BMB",
+    " C "
+  ],
+  "key": {
+    "B": {
+      "item": "create:brass_ingot"
+    },
+    "C": {
+      "item": "create:copper_sheet"
+    },
+    "M": {
+      "item": "create:mechanical_pump"
+    }
+  },
+  "result": {
+    "item": "booster:powerful_mechanical_pump"
+  }
+}

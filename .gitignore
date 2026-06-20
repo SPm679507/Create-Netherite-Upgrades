@@ -1,0 +1,16 @@
+.gradle/
+build/
+run/
+runs/
+out/
+
+*.log
+*.tmp
+*.bak
+
+.idea/
+*.iml
+.vscode/
+
+hs_err_pid*
+replay_pid*

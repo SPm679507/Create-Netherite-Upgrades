@@ -1,0 +1,26 @@
+package io.github.boosterproject.booster.registry;
+
+import io.github.boosterproject.booster.Booster;
+import io.github.boosterproject.booster.content.fluids.pump.PowerfulMechanicalPumpBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
+
+public final class BoosterBlockEntityTypes {
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES =
+        DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Booster.MOD_ID);
+
+    public static final RegistryObject<BlockEntityType<PowerfulMechanicalPumpBlockEntity>> POWERFUL_MECHANICAL_PUMP =
+        BLOCK_ENTITY_TYPES.register("powerful_mechanical_pump", () -> BlockEntityType.Builder
+            .of(PowerfulMechanicalPumpBlockEntity::new, BoosterBlocks.POWERFUL_MECHANICAL_PUMP.get())
+            .build(null));
+
+    private BoosterBlockEntityTypes() {
+    }
+
+    public static void register(IEventBus eventBus) {
+        BLOCK_ENTITY_TYPES.register(eventBus);
+    }
+}

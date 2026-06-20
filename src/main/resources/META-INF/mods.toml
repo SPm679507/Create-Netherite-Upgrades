@@ -1,0 +1,33 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "MIT"
+
+[[mods]]
+modId = "booster"
+version = "${version}"
+displayName = "Booster"
+authors = "Booster contributors"
+description = '''
+A Create addon mod.
+'''
+
+[[dependencies.booster]]
+modId = "forge"
+mandatory = true
+versionRange = "[47.1.33,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.booster]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20.1]"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.booster]]
+modId = "create"
+mandatory = true
+versionRange = "[6.0.8,)"
+ordering = "AFTER"
+side = "BOTH"

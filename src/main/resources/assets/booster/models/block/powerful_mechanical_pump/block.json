@@ -1,0 +1,7 @@
+{
+  "parent": "create:block/mechanical_pump/block",
+  "textures": {
+    "4": "booster:block/powerful_mechanical_pump/pump",
+    "particle": "booster:block/powerful_mechanical_pump/pump"
+  }
+}
