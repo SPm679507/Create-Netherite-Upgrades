@@ -10,4 +10,8 @@ public final class BoosterPartialModels {
 
     private BoosterPartialModels() {
     }
+
+    public static void init() {
+        // Loads the class early so Flywheel sees the partial model before model baking.
+    }
 }

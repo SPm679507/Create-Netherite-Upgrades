@@ -18,6 +18,7 @@ public final class BoosterClient {
     }
 
     public static void register(IEventBus modEventBus) {
+        BoosterPartialModels.init();
         modEventBus.addListener(BoosterClient::registerRenderers);
         modEventBus.addListener(BoosterClient::clientSetup);
         CreateClient.MODEL_SWAPPER.getCustomBlockModels()
