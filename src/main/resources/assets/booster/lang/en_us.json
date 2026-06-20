@@ -1,5 +1,6 @@
 {
   "block.booster.powerful_mechanical_pump": "Powerful Mechanical Pump",
+  "itemGroup.booster.booster": "Booster",
   "item.booster.netherite_sheet": "Netherite Sheet",
   "tooltip.booster.powerful_mechanical_pump": "High-capacity fluid pump"
 }

@@ -1,5 +1,6 @@
 {
   "block.booster.powerful_mechanical_pump": "强力机械泵",
+  "itemGroup.booster.booster": "Booster",
   "item.booster.netherite_sheet": "下界合金板",
   "tooltip.booster.powerful_mechanical_pump": "高吞吐量流体泵"
 }

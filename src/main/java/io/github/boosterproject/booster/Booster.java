@@ -6,10 +6,9 @@ import io.github.boosterproject.booster.client.BoosterClient;
 import io.github.boosterproject.booster.config.BoosterConfigs;
 import io.github.boosterproject.booster.registry.BoosterBlockEntityTypes;
 import io.github.boosterproject.booster.registry.BoosterBlocks;
+import io.github.boosterproject.booster.registry.BoosterCreativeModeTabs;
 import io.github.boosterproject.booster.registry.BoosterItems;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -29,10 +28,10 @@ public class Booster {
         BoosterConfigs.register(ModLoadingContext.get());
         BoosterBlocks.register(modEventBus);
         BoosterItems.register(modEventBus);
+        BoosterCreativeModeTabs.register(modEventBus);
         BoosterBlockEntityTypes.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
-        modEventBus.addListener(this::addCreative);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> BoosterClient.register(modEventBus));
 
         LOGGER.info("Booster loaded");
@@ -43,11 +42,5 @@ public class Booster {
             BoosterBlocks.POWERFUL_MECHANICAL_PUMP.get(),
             () -> BoosterConfigs.SERVER.powerfulPumpStressImpact.get()
         ));
-    }
-
-    private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
-            event.accept(BoosterItems.POWERFUL_MECHANICAL_PUMP.get());
-        }
     }
 }
