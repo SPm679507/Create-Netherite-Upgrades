@@ -2,22 +2,20 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "pattern": [
-    " C ",
-    "BMB",
-    " C "
+    " N ",
+    "PPP",
+    " N "
   ],
   "key": {
-    "B": {
-      "item": "create:brass_ingot"
+    "N": {
+      "item": "createnetherite:netherite_sheet"
     },
-    "C": {
-      "item": "create:copper_sheet"
-    },
-    "M": {
+    "P": {
       "item": "create:mechanical_pump"
     }
   },
   "result": {
-    "item": "createnetherite:powerful_mechanical_pump"
+    "item": "createnetherite:powerful_mechanical_pump",
+    "count": 3
   }
 }
