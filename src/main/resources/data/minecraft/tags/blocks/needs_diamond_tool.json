@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "createnetherite:powerful_mechanical_pump",
     "createnetherite:netherite_fluid_tank"
   ]
 }
