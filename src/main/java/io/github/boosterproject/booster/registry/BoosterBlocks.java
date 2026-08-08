@@ -3,6 +3,7 @@ package io.github.boosterproject.booster.registry;
 import io.github.boosterproject.booster.Booster;
 import io.github.boosterproject.booster.content.fluids.pump.PowerfulMechanicalPumpBlock;
 import io.github.boosterproject.booster.content.fluids.tank.NetheriteFluidTankBlock;
+import io.github.boosterproject.booster.content.kinetics.steamEngine.NetheriteSteamEngineBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
@@ -26,6 +27,12 @@ public final class BoosterBlocks {
             BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK)
                 .noOcclusion()
                 .isRedstoneConductor((state, getter, pos) -> true)
+        ));
+
+    public static final RegistryObject<NetheriteSteamEngineBlock> NETHERITE_STEAM_ENGINE =
+        BLOCKS.register("netherite_steam_engine", () -> new NetheriteSteamEngineBlock(
+            BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK)
+                .noOcclusion()
         ));
 
     private BoosterBlocks() {
