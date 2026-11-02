@@ -9,9 +9,9 @@
 ## 版本与分支
 
 - 分支：`1.21.1-NeoForge`
-- 源码核对日期：`2026-10-31`
-- 源码基线提交：`136c2e73c70b4b2913c7d09a1e4cc42fcda3e664`（本次后续修改统一原生物品概要提示）
-- 模组版本：`0.3.0`
+- 源码核对日期：`2026-11-02`
+- 源码基线提交：`258581732409c92bd271c783fff83fe993a5a4ca`（后续新增无线终端与管理器；贴图提交 `7326d31`）
+- 模组版本：`0.3.1`
 - Mod id：`createnetherite`
 - 主包名：`io.github.boosterproject.booster`
 - Minecraft：`1.21.1`
@@ -74,7 +74,7 @@
 按当前配置生成的主 jar：
 
 ```text
-build/libs/createnetherite-1.21.1-0.3.0.jar
+build/libs/createnetherite-1.21.1-0.3.1.jar
 ```
 
 ## Gradle 与依赖
@@ -138,6 +138,8 @@ MixinConfigs: createnetherite.mixins.json
 - `createnetherite:netherite_blaze_burner`
 - `createnetherite:netherite_encased_fan`
 - `createnetherite:netherite_filter`
+- `createnetherite:netherite_wireless_terminal`
+- `createnetherite:netherite_infinite_manager`
 - `createnetherite:netherite_sheet`
 
 创造模式标签页：
@@ -145,7 +147,7 @@ MixinConfigs: createnetherite.mixins.json
 - 注册位置：`BoosterCreativeModeTabs`
 - 标签页 ID：`createnetherite:createnetherite`
 - 图标：强力机械泵
-- 包含：上述十种方块的物品、下界合金过滤器和下界合金板，共十二种注册物品；空燃烧室是同一物品 ID 的组件变体
+- 包含：上述十一种方块的物品、下界合金过滤器、下界合金无限管理器和下界合金板，共十四种注册物品；空燃烧室是同一物品 ID 的组件变体
 
 ## 主类与初始化
 
@@ -204,7 +206,7 @@ NeoForge 1.21.1 使用 NeoForge DeferredRegister 新类型，不再使用 Forge 
 - `DeferredBlock<NetheriteBlazeBurnerBlock> NETHERITE_BLAZE_BURNER`
 - `DeferredBlock<NetheriteEncasedFanBlock> NETHERITE_ENCASED_FAN`
 
-属性大多复制 Create 对应方块。十种方块的基础爆炸抗性统一为 `1200.0F`：储罐和蒸汽引擎继承下界合金块属性，其余方块显式设置。强力泵基于铜块属性。
+属性大多复制 Create 对应方块。十一种方块的基础爆炸抗性统一为 `1200.0F`：储罐和蒸汽引擎继承下界合金块属性，其余方块显式设置。强力泵基于铜块属性。
 
 1.21.1 API 差异：
 
@@ -228,8 +230,10 @@ NeoForge 1.21.1 使用 NeoForge DeferredRegister 新类型，不再使用 Forge 
 - `DeferredItem<Item> NETHERITE_BLAZE_BURNER`：使用 `NetheriteBlazeBurnerItem`，默认 1 只，可逐只捕获至 4 只
 - `DeferredItem<Item> NETHERITE_ENCASED_FAN`：普通 `BlockItem`
 - `DeferredItem<Item> NETHERITE_FILTER`：`NetheriteFilterItem`，继承 Create `FilterItem`
+- `DeferredItem<Item> NETHERITE_WIRELESS_TERMINAL`：普通 `BlockItem`
+- `DeferredItem<Item> NETHERITE_INFINITE_MANAGER`：`InfiniteManagerItem`，手持右键打开分页管理器
 
-上述十二种物品的 `Item.Properties` 均设置 `.fireResistant()`，使用原版下界合金物品的火焰与岩浆伤害保护。
+上述十四种物品的 `Item.Properties` 均设置 `.fireResistant()`，使用原版下界合金物品的火焰与岩浆伤害保护。
 
 ### BlockEntityType
 
@@ -310,7 +314,7 @@ createnetherite-server.toml
 
 强力机械泵使用普通 `BlockItem`，不再通过 `appendHoverText` 默认展开介绍。
 
-客户端 `BoosterTooltips.register()` 使用 Create 6.0.10 的 `TooltipModifier.REGISTRY` 与 `ItemDescription.Modifier`。已有思索的下界合金鼓风机和过滤器保留原生 Ponder 入口；其余十种物品提供中英文 `<物品 description id>.tooltip.summary`，由 Create 生成 Shift 提示、折叠、换行及重点配色。燃烧室捕获用法使用原生 `.condition1` / `.behaviour1`。
+客户端 `BoosterTooltips.register()` 使用 Create 6.0.10 的 `TooltipModifier.REGISTRY` 与 `ItemDescription.Modifier`。已有思索的下界合金鼓风机和过滤器保留原生 Ponder 入口；其余十二种物品提供中英文 `<物品 description id>.tooltip.summary`，由 Create 生成 Shift 提示、折叠、换行及重点配色。燃烧室捕获用法使用原生 `.condition1` / `.behaviour1`。
 
 储罐的当前配置容量倍率、燃烧室堆叠保存的数量与倍率，只在按住 Shift 时追加到原生概要后。相关代码仅在客户端加载；捕获、放置、燃烧以及工程师护目镜信息保持原有逻辑。过滤器的已配置规则预览沿用 Create `FilterItem` 的原生显示行为。
 
@@ -846,3 +850,26 @@ minecraft:netherite_ingot
 - 后续升级 Create 时，重新核对上表全部 Mixin 的方法、调用 descriptor、常量和局部变量位置；升降机装配补丁使用 `@ModifyVariable`，尤其依赖目标局部变量布局。
 - 保持 `createnetherite` 命名空间及现有方块、物品和 BE 注册 ID，避免已有存档失去映射。
 - 文档中的当前行为来自源码核对；构建、客户端启动、服务端启动和具体机械行为的验证结果应分别记录。
+
+
+## 下界合金无线红石终端与无限管理器（0.3.1）
+
+- 方块/物品：`netherite_wireless_terminal`；管理器物品：`netherite_infinite_manager`。无频率、无距离或维度限制，不接入 Create 的频率网络。
+- `WirelessTerminalData` 存储于主世界 `data/createnetherite_wireless_terminals.dat`。每个终端以 UUID 标识，保存放置者 UUID/玩家名、用户名称、维度、坐标、公开状态及激活期限。查询记录不读取目标 chunk。
+- 放置时生成身份并默认私有；名称格式通过双语 `wireless.createnetherite.owned_name` 显示，默认名称也按客户端语言显示。拆除注销；重新放置生成新身份。BE 保存登记备份，重载时以全局记录中的设置为准。
+- `WirelessManagerMenu` 每页发送五个可见终端，记录跨页选择。列表仅含自己的和公开的终端。所有请求先验证当前菜单与持有管理器/本地终端交互范围，改名/公开再核对所有者 UUID，激活逐项复查当前可见权限，客户端不能凭空指定其他人的私有终端。
+- 玩家右键自己的终端进入同一菜单的单终端配置视图；管理器也允许远程修改自己的终端。名字最多 48 个字符，过滤控制字符。公开状态只授权查看和发送信号，不授权改名或再次公开。
+- `WirelessTerminalService.activate` 通过注册的 NeoForge `TicketController` 申请目标 chunk 的 ticking 票据，加载后校验实际 BE 身份，再输出强度 15 的红石信号，并向脚下的实体支撑方块提供强信号。开关和拆除均通知支撑方块的邻居。信号持续 20 tick，加载票据持续 300 tick；重复发送从当前主世界游戏时间重新计时。批量请求在同一服务器操作中处理，期限一致。
+- 服务器 `Post` tick 负责 20 tick 归零、300 tick 释放。票据以终端 UUID 独立持有，同 chunk 的多个终端互不提前取消；释放只撤销本控制器自己的票据，不撤销其他来源。暂停服务器会暂停计时。
+- 重启时控制器回调先清除本功能磁盘中的旧票据；所有维度完成初始化后，首个服务器 tick 只恢复全局记录中尚未到期的租期。已过期信号在 BE 载入时归零，防止保存的通电状态滞留。
+- 客户端使用 `WirelessActionPayload` / `WirelessPagePayload`，均由服务端/客户端主线程处理；公共网络类不依赖图形客户端类。分页保持数据包大小固定，无需把所有私有记录发送到客户端再过滤。
+- 模型继承锁定版 Create 的 `redstone_link/receiver` 与 `linked_controller/item`，终端通电/断电切换对应贴图。新增 PNG 由指定贴图对话提供；本功能沿用全部下界合金物品的防火、防爆及原生 Shift 概要。
+
+验证入口：`wirelessRegressionTest` 已接入 `check/build`；独立 `runWirelessGameTestServer` 使用 `src/wirelessGameTest` 与专用 `run/wireless-gametest`，测试代码和结构不进入发布 jar。只运行无图形服务端，不启动游戏客户端或使用 RTX 5060。
+
+构建配置参照 [ModDevGradle 官方说明](https://github.com/neoforged/ModDevGradle#runs)；区块票据与包处理按当前锁定的 NeoForge 21.1.219 源码核对。
+
+
+2026-11-02 无线功能验证：新增 33 项数据回归先失败再转绿；一次独立审查发现并修正命名输入快捷键及支撑方块强信号问题。实际无图形 GameTest 服务端通过了未加载末地目标激活、私有请求不加载、1 秒输出、15 秒释放、同区块独立续期、再次卸载、真实支撑方块灯电路及拆除不影响其他加载来源。灯的计划刻按原版异步实体载入规则等待执行，不改变终端电平期限。测试服务端已退出，未运行客户端或使用显卡；界面操作尚未实测。
+
+最终 0.3.1 完整离线构建通过：原有 172 项与新增 33 项，共 205 项回归通过。84 个生产 Java 源文件、111 个资源 JSON，双语键及模型引用检查通过；最终 jar 的版本元数据、全部生产资源字节、无线类及测试代码/结构排除检查通过。既有美术未修改，四张新增 PNG 对应贴图提交 `7326d31`。

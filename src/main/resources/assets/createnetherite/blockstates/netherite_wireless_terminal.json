@@ -1,0 +1,36 @@
+{
+  "variants": {
+    "facing=north,powered=false": {
+      "model": "createnetherite:block/netherite_wireless_terminal",
+      "y": 0
+    },
+    "facing=north,powered=true": {
+      "model": "createnetherite:block/netherite_wireless_terminal_powered",
+      "y": 0
+    },
+    "facing=east,powered=false": {
+      "model": "createnetherite:block/netherite_wireless_terminal",
+      "y": 90
+    },
+    "facing=east,powered=true": {
+      "model": "createnetherite:block/netherite_wireless_terminal_powered",
+      "y": 90
+    },
+    "facing=south,powered=false": {
+      "model": "createnetherite:block/netherite_wireless_terminal",
+      "y": 180
+    },
+    "facing=south,powered=true": {
+      "model": "createnetherite:block/netherite_wireless_terminal_powered",
+      "y": 180
+    },
+    "facing=west,powered=false": {
+      "model": "createnetherite:block/netherite_wireless_terminal",
+      "y": 270
+    },
+    "facing=west,powered=true": {
+      "model": "createnetherite:block/netherite_wireless_terminal_powered",
+      "y": 270
+    }
+  }
+}

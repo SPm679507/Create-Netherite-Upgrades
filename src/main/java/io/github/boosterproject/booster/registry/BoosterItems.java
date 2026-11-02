@@ -7,6 +7,7 @@ import com.simibubi.create.content.processing.AssemblyOperatorBlockItem;
 import io.github.boosterproject.booster.Booster;
 import io.github.boosterproject.booster.content.fluids.tank.NetheriteFluidTankBlockItem;
 import io.github.boosterproject.booster.content.logistics.filter.NetheriteFilterItem;
+import io.github.boosterproject.booster.content.redstone.wireless.InfiniteManagerItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
@@ -78,6 +79,13 @@ public final class BoosterItems {
         ITEMS.register("netherite_mechanical_mixer", () -> new AssemblyOperatorBlockItem(
             BoosterBlocks.NETHERITE_MECHANICAL_MIXER.get(), new Item.Properties().fireResistant()
         ));
+
+    public static final DeferredItem<Item> NETHERITE_WIRELESS_TERMINAL =
+        ITEMS.register("netherite_wireless_terminal", () -> new BlockItem(
+            BoosterBlocks.NETHERITE_WIRELESS_TERMINAL.get(), new Item.Properties().fireResistant()));
+
+    public static final DeferredItem<Item> NETHERITE_INFINITE_MANAGER =
+        ITEMS.register("netherite_infinite_manager", () -> new InfiniteManagerItem(new Item.Properties().fireResistant().stacksTo(1)));
 
     private BoosterItems() {
     }

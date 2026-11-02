@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "createnetherite:netherite_wireless_terminal"
+        }
+      ]
+    }
+  ],
+  "random_sequence": "createnetherite:blocks/netherite_wireless_terminal"
+}

@@ -85,6 +85,7 @@ public final class BoosterClient {
     private static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(BoosterMenuTypes.NETHERITE_FILTER.get(), NetheriteFilterScreen::new);
         event.register(BoosterMenuTypes.NETHERITE_FAN.get(), NetheriteFanScreen::new);
+        event.register(BoosterMenuTypes.NETHERITE_WIRELESS_MANAGER.get(), WirelessManagerScreen::new);
     }
 
     private static void clientSetup(FMLClientSetupEvent event) {

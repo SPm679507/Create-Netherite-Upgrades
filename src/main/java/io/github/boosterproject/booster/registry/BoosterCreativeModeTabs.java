@@ -33,6 +33,8 @@ public final class BoosterCreativeModeTabs {
                 output.accept(BoosterItems.NETHERITE_ENCASED_FAN.get());
                 output.accept(BoosterItems.NETHERITE_MECHANICAL_ARM.get());
                 output.accept(BoosterItems.NETHERITE_FILTER.get());
+                output.accept(BoosterItems.NETHERITE_WIRELESS_TERMINAL.get());
+                output.accept(BoosterItems.NETHERITE_INFINITE_MANAGER.get());
                 output.accept(BoosterItems.NETHERITE_SHEET.get());
             })
             .build());

@@ -3,6 +3,7 @@ package io.github.boosterproject.booster.registry;
 import io.github.boosterproject.booster.Booster;
 import io.github.boosterproject.booster.content.kinetics.fan.NetheriteFanMenu;
 import io.github.boosterproject.booster.content.logistics.filter.NetheriteFilterMenu;
+import io.github.boosterproject.booster.content.redstone.wireless.WirelessManagerMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.MenuType;
 import net.neoforged.bus.api.IEventBus;
@@ -18,6 +19,9 @@ public final class BoosterMenuTypes {
 
     public static final DeferredHolder<MenuType<?>, MenuType<NetheriteFanMenu>> NETHERITE_FAN =
         MENU_TYPES.register("netherite_fan", () -> IMenuTypeExtension.create(NetheriteFanMenu::new));
+
+    public static final DeferredHolder<MenuType<?>, MenuType<WirelessManagerMenu>> NETHERITE_WIRELESS_MANAGER =
+        MENU_TYPES.register("netherite_wireless_manager", () -> IMenuTypeExtension.create(WirelessManagerMenu::new));
 
     private BoosterMenuTypes() {
     }

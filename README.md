@@ -4,7 +4,7 @@
 
 当前分支：`1.21.1-NeoForge`
 
-当前模组版本：`0.3.0`
+当前模组版本：`0.3.1`
 
 # 维护状态
 
@@ -29,6 +29,8 @@ Minecraft `1.20.1` Forge 的 `main` 分支暂停更新，保留现有代码和�
 - `createnetherite:netherite_blaze_burner`
 - `createnetherite:netherite_encased_fan`
 - `createnetherite:netherite_filter`
+- `createnetherite:netherite_wireless_terminal`
+- `createnetherite:netherite_infinite_manager`
 - `createnetherite:netherite_sheet`
 
 强力机械泵接入 Create 原版流体管网，默认基础应力消耗为 `16.0`、压力倍率为 `8.0`。压力倍率提高吞吐，不增加管道传播距离。
@@ -79,11 +81,21 @@ Minecraft `1.20.1` Forge 的 `main` 分支暂停更新，保留现有代码和�
 
 **物品说明：** 已有思索的物品沿用 Create 原生思索入口；其余物品使用原生“按住 Shift 查看概要”。储罐容量倍率与燃烧室当前数量、倍率均在 Shift 展开后显示。
 
+# 无线红石
+
+下界合金无线红石信号终端（无线红石加载器）放置后默认私有。所有者右键终端可命名和设置公开状态，显示名称为“放置玩家名的终端名”。管理器同时显示坐标和所在维度；同名终端仍是独立目标。
+
+手持下界合金无限管理器并右键，查看自己放置的终端和其他玩家公开的终端。点击条目勾选，支持跨页多选、“全选本页”、“清空选择”及同时激活所选终端；也可以直接编辑自己的终端。
+
+无需频率，可跨维度、无限距离激活，包括未加载区块中的终端。每次发送输出强度为 `15`、持续 `1 秒` 的红石信号，并保持目标区块加载 `15 秒`。再次激活重新计算两个期限；计时使用游戏 tick（`20 / 300 tick`）。仅打开列表不会加载目标区块。拆除会注销终端，重新放置后按新终端登记。
+
+合成方式：下界合金板 + Create 无线红石信号终端（`create:redstone_link`）获得下界合金终端；下界合金板 + Create 无线红石遥控器（`create:linked_controller`）获得管理器，均为无序合成。
+
 # 防爆与防火
 
-上述全部物品（含强力机械泵和下界合金板）的掉落物均免疫爆炸伤害；十种方块放置后均不被爆炸破坏，储罐与保险库中的内容也因此保留。方块基础爆炸抗性统一为 `1200`。
+上述全部物品（含强力机械泵和下界合金板）的掉落物均免疫爆炸伤害；十一种方块放置后均不被爆炸破坏，储罐与保险库中的内容也因此保留。方块基础爆炸抗性统一为 `1200`。
 
-全部十二种物品也具有下界合金物品的防火属性，掉落在火焰或岩浆中不会被烧毁。
+全部十四种物品也具有下界合金物品的防火属性，掉落在火焰或岩浆中不会被烧毁。
 
 # 环境要求
 
@@ -120,7 +132,7 @@ createnetherite-server.toml
 构建产物：
 
 ```text
-build/libs/createnetherite-1.21.1-0.3.0.jar
+build/libs/createnetherite-1.21.1-0.3.1.jar
 ```
 
 # Introduction
@@ -129,7 +141,7 @@ build/libs/createnetherite-1.21.1-0.3.0.jar
 
 Current branch: `1.21.1-NeoForge`
 
-Current mod version: `0.3.0`
+Current mod version: `0.3.1`
 
 # Maintenance status
 
@@ -154,6 +166,8 @@ The mod currently adds several Create-compatible entries:
 - `createnetherite:netherite_blaze_burner`
 - `createnetherite:netherite_encased_fan`
 - `createnetherite:netherite_filter`
+- `createnetherite:netherite_wireless_terminal`
+- `createnetherite:netherite_infinite_manager`
 - `createnetherite:netherite_sheet`
 
 The Powerful Mechanical Pump uses Create's native fluid network, with a default base stress impact of `16.0` and a pressure multiplier of `8.0`. The pressure multiplier increases throughput without extending pipe propagation distance.
@@ -204,11 +218,21 @@ Craft one Netherite Sheet with a regular Encased Fan or Filter to obtain the cor
 
 **Item descriptions:** Items with Ponder scenes keep Create's native Ponder entry. Other items use the native hold-Shift summary. Tank capacity multipliers and the burner's current count and rates appear when holding Shift.
 
+# Wireless Redstone
+
+The Netherite Wireless Redstone Terminal starts private. Its owner can right-click to name it or make it public. Names display as “placing player's name + terminal name”; the manager also shows coordinates and dimension. Duplicate display names remain separate targets.
+
+Right-click while holding a Netherite Infinite Manager to list your terminals and public terminals placed by others. Click rows to select, keep selections across pages, select the current page, clear selections, or activate selected terminals together. You can also edit your own terminals remotely.
+
+No frequencies are needed. Terminals work across dimensions at any distance, including unloaded chunks. Each activation emits a strength-`15` signal for `1 second` and keeps the target chunk ticking for `15 seconds`. Sending again renews both deadlines, measured as `20 / 300 game ticks`. Listing terminals does not load their chunks. Breaking unregisters a terminal; placing it again creates a new identity.
+
+Craft a Netherite Sheet with a Create Redstone Link (`create:redstone_link`) for the terminal, or with a Linked Controller (`create:linked_controller`) for the manager. Both recipes are shapeless.
+
 # Blast and Fire Protection
 
-All items listed above, including the Powerful Mechanical Pump and Netherite Sheet, are immune to explosion damage when dropped. All ten placed blocks are protected from explosion destruction, preserving tank and vault contents. Their base blast resistance is `1200`.
+All items listed above, including the Powerful Mechanical Pump and Netherite Sheet, are immune to explosion damage when dropped. All eleven placed blocks are protected from explosion destruction, preserving tank and vault contents. Their base blast resistance is `1200`.
 
-All twelve items also have the fire resistance of netherite items: dropped items cannot be burned by fire or lava.
+All fourteen items also have the fire resistance of netherite items: dropped items cannot be burned by fire or lava.
 
 # Requirements
 
@@ -245,5 +269,5 @@ Existing worlds keep their own `serverconfig/createnetherite-server.toml`. If de
 Build output:
 
 ```text
-build/libs/createnetherite-1.21.1-0.3.0.jar
+build/libs/createnetherite-1.21.1-0.3.1.jar
 ```

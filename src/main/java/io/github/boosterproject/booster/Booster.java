@@ -13,6 +13,8 @@ import io.github.boosterproject.booster.content.BoosterExplosionProtection;
 import io.github.boosterproject.booster.content.processing.burner.NetheriteBlazeBurnerBlock;
 import io.github.boosterproject.booster.content.processing.burner.NetheriteBlazeBurnerMovementBehaviour;
 import io.github.boosterproject.booster.content.kinetics.mechanicalArm.NetheriteArmBehavior;
+import io.github.boosterproject.booster.content.redstone.wireless.WirelessNetworking;
+import io.github.boosterproject.booster.content.redstone.wireless.WirelessTerminalService;
 import io.github.boosterproject.booster.registry.BoosterBlockEntityTypes;
 import io.github.boosterproject.booster.registry.BoosterBlocks;
 import io.github.boosterproject.booster.registry.BoosterCreativeModeTabs;
@@ -27,6 +29,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.common.world.chunk.RegisterTicketControllersEvent;
 import org.slf4j.Logger;
 
 @Mod(Booster.MOD_ID)
@@ -45,6 +48,9 @@ public class Booster {
 
         NeoForge.EVENT_BUS.addListener(BoosterExplosionProtection::onExplosionDetonate);
         NeoForge.EVENT_BUS.addListener(BoosterExplosionProtection::onEntityInvulnerabilityCheck);
+        NeoForge.EVENT_BUS.addListener(WirelessTerminalService::tick);
+        modEventBus.addListener(WirelessNetworking::register);
+        modEventBus.addListener((RegisterTicketControllersEvent event) -> event.register(WirelessTerminalService.TICKETS));
 
         modEventBus.addListener(this::commonSetup);
         if (FMLEnvironment.dist == Dist.CLIENT) {

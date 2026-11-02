@@ -12,6 +12,7 @@ import io.github.boosterproject.booster.content.kinetics.mechanicalArm.Netherite
 import io.github.boosterproject.booster.content.kinetics.mixer.NetheriteMechanicalMixerBlock;
 import io.github.boosterproject.booster.content.logistics.vault.NetheriteItemVaultBlock;
 import io.github.boosterproject.booster.content.processing.burner.NetheriteBlazeBurnerBlock;
+import io.github.boosterproject.booster.content.redstone.wireless.WirelessTerminalBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
@@ -82,6 +83,12 @@ public final class BoosterBlocks {
         BLOCKS.register("netherite_mechanical_mixer", () -> new NetheriteMechanicalMixerBlock(
             BlockBehaviour.Properties.ofFullCopy(AllBlocks.MECHANICAL_MIXER.get())
                 .explosionResistance(1200.0F)
+        ));
+
+    public static final DeferredBlock<WirelessTerminalBlock> NETHERITE_WIRELESS_TERMINAL =
+        BLOCKS.register("netherite_wireless_terminal", () -> new WirelessTerminalBlock(
+            BlockBehaviour.Properties.ofFullCopy(AllBlocks.REDSTONE_LINK.get())
+                .noOcclusion().explosionResistance(1200.0F)
         ));
 
     private BoosterBlocks() {

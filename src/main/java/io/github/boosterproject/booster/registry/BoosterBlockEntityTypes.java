@@ -12,6 +12,7 @@ import io.github.boosterproject.booster.content.kinetics.fan.NetheriteEncasedFan
 import io.github.boosterproject.booster.content.kinetics.mechanicalArm.NetheriteMechanicalArmBlockEntity;
 import io.github.boosterproject.booster.content.kinetics.mixer.NetheriteMechanicalMixerBlockEntity;
 import io.github.boosterproject.booster.content.logistics.vault.NetheriteItemVaultBlockEntity;
+import io.github.boosterproject.booster.content.redstone.wireless.WirelessTerminalBlockEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -75,6 +76,10 @@ public final class BoosterBlockEntityTypes {
         BLOCK_ENTITY_TYPES.register("netherite_mechanical_mixer", () -> BlockEntityType.Builder
             .of(NetheriteMechanicalMixerBlockEntity::new, BoosterBlocks.NETHERITE_MECHANICAL_MIXER.get())
             .build(null));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WirelessTerminalBlockEntity>> NETHERITE_WIRELESS_TERMINAL =
+        BLOCK_ENTITY_TYPES.register("netherite_wireless_terminal", () -> BlockEntityType.Builder
+            .of(WirelessTerminalBlockEntity::new, BoosterBlocks.NETHERITE_WIRELESS_TERMINAL.get()).build(null));
 
     private BoosterBlockEntityTypes() {
     }

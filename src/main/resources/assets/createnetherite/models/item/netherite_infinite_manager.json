@@ -1,0 +1,7 @@
+{
+  "parent": "create:item/linked_controller/item",
+  "textures": {
+    "redstone_bridge": "createnetherite:item/netherite_infinite_manager",
+    "particle": "createnetherite:item/netherite_infinite_manager"
+  }
+}
